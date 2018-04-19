@@ -1,0 +1,12 @@
+CC=gcc
+LIB=/home/r00tr4t/.lib/c-lib/*.c
+CFLAGS=-g -Wall
+EXE_FILE=prog
+all:
+	$(CC) $(CFLAGS) $(LIB) main.c -o $(EXE_FILE) -lm
+
+debug: all
+	gdb $(EXE_FILE)
+
+run: all
+	./$(EXE_FILE)

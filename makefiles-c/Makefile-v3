@@ -1,0 +1,38 @@
+## My generic makefile written by Magnus Sörensen. GPL3.0 Lisense.
+
+## CROSS_TOLL is used if you need co add a cross platform compiler.
+CROSS_TOLL=
+## CC is the compiler you use in this project.
+CC=$(CROSS_TOLL) gcc
+TTY=/dev/pts/1
+## Target is the source files with out .c or .cpp  tex main.c ~> main
+TARGET=main BSTree lemonadlib
+OBJECTS=$(TARGET:=.o)
+## EXECFILE is the name on the exe file you want
+EXECFILE=prog
+## LFLAGS is the libary linker flags like -lncurses or -lpthread.
+#LFLAGS=-lpthread
+LFLAGS=-lncurses -lm
+## CFLAGS tells the copmiler to compile with diffrent flaggs mostly -g -Wall
+CFLAGS=-g -Wall
+
+
+$(TARGET):
+	$(CC) $(CFLAGS) $(LFLAGS) -c $@.c
+
+all: clean $(TARGET)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJECTS) -o $(EXECFILE)
+
+run: clean all
+	./$(EXECFILE)
+
+debug: clean all
+	gdb ./$(EXECFILE)
+
+.PHONY: clean valgrind
+
+valgrind: clean all
+	valgrind ./$(EXECFILE)
+
+clean:
+	rm -f $(TARGET).o
