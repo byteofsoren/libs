@@ -21,7 +21,7 @@ cp $baseFile.tex $baseFile.bac
 # fi
 if [ -f $baseFile.tex ];
 then
-    pdflatex $baseFile.tex > /dev/null
+    pdflatex -interaction=nonstopmode $baseFile.tex > /dev/null
 fi
 if [ -f $baseFile.pdf ];
 then
