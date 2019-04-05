@@ -7,24 +7,35 @@
 # pdfshow is the pdf viewer.
 baseFile=main
 pdfshow=zathura
+output_directory=/tmp/pdflatex/
 
-ps aux | grep $pdfshow > /dev/null
-if [ $? -eq 0 ];
+
+check_process() {
+  echo "$ts: checking $1"
+  [ "$1" = "" ]  && return 0
+  [ `pgrep -n $1` ] && return 1 || return 0
+}
+
+if [ ! -d $output_directory ];
+then
+    mkdir $output_directory
+fi
+#ps aux | grep $pdfshow > /dev/null
+check_process "$pdfshow"
+if [ ! $? -eq 0 ];
 then
     echo "$pdfshow is running. Kill ing it."
     pkill $pdfshow
 fi
 cp $baseFile.tex $baseFile.bac
-# if [ ! -f $baseFile.pdf ];
-# then
-#     rm $baseFile.pdf
-# fi
 if [ -f $baseFile.tex ];
 then
-    pdflatex -interaction=nonstopmode $baseFile.tex > /dev/null
+    pdflatex -interaction=nonstopmode -output-directory $output_directory $baseFile.tex > /dev/null
+    cp "$output_directory$baseFile.pdf" .
 fi
 if [ -f $baseFile.pdf ];
 then
     $pdfshow $baseFile.pdf &
 fi
-rm *.out *.bac *.bac *.aux > /dev/null
+cat $output_directory$baseFile.log
+#rm *.out *.bac *.bac *.aux > /dev/null

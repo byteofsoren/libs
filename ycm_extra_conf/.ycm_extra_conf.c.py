@@ -62,10 +62,10 @@ flags = [
         '-x', 'c',
         #Here are the libraries for the RaspberryPi2 or 3:
         #THIS IS THE MONEY MAKER:
-        '-isystem', '/usr/include/c++/{}/'.format(''.join(max(os.listdir('/usr/include/c++/')))),
-        '-isystem', '/usr/include/c++/{}/x86_64-pc-linux-gnu'.format(''.join(max(os.listdir('/usr/include/c++/')))),
-        '-isystem', '/usr/include/c++/{dir}/x86_64-pc-linux-gnu'.format(dir=''.join(max(os.listdir('/usr/include/c++/')))),
-        '-isystem', '/usr/include/c++/{}/backward'.format(''.join(max(os.listdir('/usr/include/c++/')))),
+        #'-isystem', '/usr/include/c++/{}/'.format(''.join(max(os.listdir('/usr/include/c++/')))),
+        #'-isystem', '/usr/include/c++/{}/x86_64-pc-linux-gnu'.format(''.join(max(os.listdir('/usr/include/c++/')))),
+        #'-isystem', '/usr/include/c++/{dir}/x86_64-pc-linux-gnu'.format(dir=''.join(max(os.listdir('/usr/include/c++/')))),
+        #'-isystem', '/usr/include/c++/{}/backward'.format(''.join(max(os.listdir('/usr/include/c++/')))),
         #'-isystem', '/usr/include/c++/7.3.1/backward',
         '-isystem', '/usr/include/clang/',
         '-isystem', '/usr/lib/clang/{}/include'.format(''.join(os.listdir('/usr/lib/clang/')[:][0])),
@@ -75,10 +75,9 @@ flags = [
         #'-isystem', '/opt/ros/kinetic/include/',
         #'-isystem', '/home/nvidia/mast/devel/include/',
         # For other target architectures i.e avr and arm
-        '-isystem', '/usr/lib/gcc/avr/{}/'.format(''.join(os.listdir('/usr/lib/gcc/avr/')[:][0])),
+        #'-isystem', '/usr/lib/gcc/avr/{}/'.format(''.join(os.listdir('/usr/lib/gcc/avr/')[:][0])),
         #'-isystem', '/usr/bin/../lib/gcc/arm-linux-gnueabihf/4.9/include',
         #'-isystem', '/usr/include/arm-linux-gnueabihf',
-        '-I', '~/mast/.'
         '-I', '.'
 ]
 
