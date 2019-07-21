@@ -21,12 +21,12 @@ then
     mkdir $output_directory
 fi
 #ps aux | grep $pdfshow > /dev/null
-check_process "$pdfshow"
-if [ ! $? -eq 0 ];
-then
-    echo "$pdfshow is running. Kill ing it."
-    pkill $pdfshow
-fi
+# check_process "$pdfshow"
+# if [ ! $? -eq 0 ];
+# then
+#     echo "$pdfshow is running. Kill ing it."
+#     pkill $pdfshow
+# fi
 cp $baseFile.tex $baseFile.bac
 if [ -f $baseFile.tex ];
 then
